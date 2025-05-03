@@ -1,4 +1,5 @@
 /data
 /runs
 /wandb
+/outputs
 /unsloth_compiled_cache
