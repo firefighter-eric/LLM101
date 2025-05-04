@@ -18,11 +18,12 @@ swift sft \
     --save_total_limit 1 \
     --logging_steps 1 \
     --max_length 2048 \
-    --output_dir runs/test/qwen2.5-0.5b \
+    --output_dir runs/swift/qwen2.5-0.5b \
     --system 'You are a helpful assistant.' \
     --warmup_ratio 0.05 \
     --dataloader_num_workers 4 \
     --report_to wandb \
     --attn_impl flash_attn \
     --use_liger_kernel true
+    --run_name test-swift-qwen2.5-0.5b
     # --tuner_backend unsloth

@@ -28,4 +28,6 @@ megatron sft \
     --dataset_num_proc 4 \
     --bf16 true \
     --log_interval 1 \
-    --use_flash_attn true
+    --use_flash_attn true \
+    --wandb_project llm101 \
+    --wandb_exp_name qwen3-0.6b-megatron
