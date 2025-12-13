@@ -1,5 +1,6 @@
 clear
 
+set -x
 export MODELSCOPE_CACHE='/home/eric/.cache/shared'
 export MEGATRON_LM_PATH='/home/eric/projects/Megatron-LM'
 
@@ -8,10 +9,10 @@ export WANDB_PROJECT=llm101
 NPROC_PER_NODE=1 \
 CUDA_VISIBLE_DEVICES=0 \
 megatron sft \
-    --load data/models/Qwen/Qwen3-0.6B-mcore \
-    --save runs/swift311-qwen3-0.6b \
+    --load data/models/Qwen/Qwen3-0.6B-mcore-2 \
+    --save runs/swift311-qwen3-0.6b-3 \
     --load_safetensors false \
-    --save_safetensors false \
+    --save_safetensors true \
     --dataset data/swift/Qwen3-SFT-Mixin/qwen3_32b_distill_1k.jsonl \
     --tensor_model_parallel_size 1 \
     --micro_batch_size 1 \
@@ -33,6 +34,5 @@ megatron sft \
     --dataset_num_proc 4 \
     --bf16 true \
     --log_interval 1 \
-    --use_flash_attn true \
     --wandb_project llm101 \
     --wandb_exp_name swift311-qwen3-0.6b
