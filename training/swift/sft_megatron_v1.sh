@@ -15,6 +15,7 @@ megatron sft \
     --load_safetensors false \
     --save_safetensors false \
     --dataset data/swift/Qwen3-SFT-Mixin/qwen3_32b_distill_1k.jsonl \
+    --train_type full \
     --tensor_model_parallel_size 1 \
     --micro_batch_size 1 \
     --global_batch_size 16 \

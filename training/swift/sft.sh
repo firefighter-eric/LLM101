@@ -4,7 +4,7 @@ export WANDB_PROJECT=llm101
 
 CUDA_VISIBLE_DEVICES=0 \
 swift sft \
-    --model data/models/Qwen/Qwen2.5-0.5B-Instruct \
+    --model data/models/Qwen/Qwen3-0.6B \
     --train_type full \
     --dataset data/swift/Qwen3-SFT-Mixin/qwen3_32b_distill_1k.jsonl \
     --torch_dtype bfloat16 \
@@ -18,12 +18,11 @@ swift sft \
     --save_total_limit 1 \
     --logging_steps 1 \
     --max_length 2048 \
-    --output_dir runs/swift/qwen2.5-0.5b \
-    --system 'You are a helpful assistant.' \
+    --output_dir runs/test/qwen3-0.6b-trl \
     --warmup_ratio 0.05 \
     --dataloader_num_workers 4 \
     --report_to wandb \
-    --attn_impl sdpa \
+    --attn_impl flash_attention_2 \
     --use_liger_kernel true \
-    --run_name test-swift-qwen2.5-0.5b
+    --run_name test-swift-qwen3-0.6b-trl
     # --tuner_backend unsloth

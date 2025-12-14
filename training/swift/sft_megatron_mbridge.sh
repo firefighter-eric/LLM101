@@ -14,16 +14,16 @@ megatron sft \
     --load_safetensors true \
     --save_safetensors true \
     --dataset data/swift/Qwen3-SFT-Mixin/qwen3_32b_distill_1k.jsonl \
-    --train_type lora \
+    --train_type full \
     --tensor_model_parallel_size 1 \
     --micro_batch_size 1 \
     --global_batch_size 16 \
     --no_gradient_accumulation_fusion false \
     --recompute_granularity selective \
-    --max_epochs 3 \
+    --max_epochs 1 \
     --finetune true \
     --cross_entropy_loss_fusion true \
-    --lr 1e-4 \
+    --lr 1e-5 \
     --lr_warmup_iters 10 \
     --min_lr 1e-6 \
     --save runs/test/qwen3-0.6b-megatron \
