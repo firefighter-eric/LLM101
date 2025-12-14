@@ -1,5 +1,7 @@
 clear
 
+export CUDA_HOME=/usr/local/cuda-12.8
+
 export MODELSCOPE_CACHE='/home/eric/.cache/shared'
 export MEGATRON_LM_PATH='/home/eric/projects/Megatron-LM'
 
@@ -8,7 +10,6 @@ export WANDB_PROJECT=llm101
 NPROC_PER_NODE=1 \
 CUDA_VISIBLE_DEVICES=0 \
 megatron sft \
-    --model data/models/Qwen/Qwen3-0.6B \
     --load data/models/Qwen/Qwen3-0.6B-mcore \
     --save runs/swift311-qwen3-0.6b \
     --load_safetensors false \
@@ -36,4 +37,4 @@ megatron sft \
     --log_interval 1 \
     --use_flash_attn true \
     --wandb_project llm101 \
-    --wandb_exp_name swift311-qwen3-0.6b
+    --wandb_exp_name swift311-qwen3-0.6b-5080
