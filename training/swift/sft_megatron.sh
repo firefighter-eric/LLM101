@@ -8,6 +8,7 @@ export WANDB_PROJECT=llm101
 NPROC_PER_NODE=1 \
 CUDA_VISIBLE_DEVICES=0 \
 megatron sft \
+    --model data/models/Qwen/Qwen3-0.6B \
     --load data/models/Qwen/Qwen3-0.6B-mcore \
     --save runs/swift311-qwen3-0.6b \
     --load_safetensors false \

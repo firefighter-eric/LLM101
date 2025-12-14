@@ -1,5 +1,6 @@
 huggingface_hub[cli]
 ms-swift
+wandb
 
 torch==2.6.0
 # flash-attn

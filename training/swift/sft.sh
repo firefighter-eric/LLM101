@@ -23,7 +23,7 @@ swift sft \
     --warmup_ratio 0.05 \
     --dataloader_num_workers 4 \
     --report_to wandb \
-    --attn_impl flash_attn \
+    --attn_impl sdpa \
     --use_liger_kernel true \
     --run_name test-swift-qwen2.5-0.5b
     # --tuner_backend unsloth
