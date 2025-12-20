@@ -1,0 +1,14 @@
+huggingface_hub[cli]
+ms-swift
+wandb
+
+torch==2.6.0
+# flash-attn
+unsloth
+liger-kernel
+
+# megatron
+pybind11
+transformer_engine
+git+https://github.com/NVIDIA/TransformerEngine.git@stable
+git+https://github.com/NVIDIA/Megatron-LM.git@core_r0.11.0

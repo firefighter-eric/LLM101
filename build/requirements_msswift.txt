@@ -1,0 +1,9 @@
+torch==2.6.0
+ms-swift==3.11
+transformers
+pybind11
+ninja
+wandb
+
+transformer_engine[pytorch]==2.7
+git+https://github.com/NVIDIA/Megatron-LM.git@core_r0.14.0
