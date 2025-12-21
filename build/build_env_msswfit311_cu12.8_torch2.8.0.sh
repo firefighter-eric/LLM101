@@ -1,13 +1,20 @@
+echo CUDA_HOME=${CUDA_HOME}
 conda create -n swift311cu128 python=3.12 -y
 conda activate swift311cu128
 
-pip install uv
-pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+uv pip install torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu128
 uv pip install ms-swift==3.11 pybind11 ninja wandb
+
+# Fix for missing nccl.h and libnccl.so during transformer_engine build
+export NCCL_ROOT=$(python -c "import nvidia.nccl; print(nvidia.nccl.__path__[0])")
+export CPATH=$NCCL_ROOT/include:$CPATH
+export LIBRARY_PATH=$NCCL_ROOT/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=$NCCL_ROOT/lib:$LD_LIBRARY_PATH
+echo NCCL_ROOT=${NCCL_ROOT}
 
 # transformer_engine
 # 若出现安装错误，可以参考该issue解决: https://github.com/modelscope/ms-swift/issues/3793
-uv pip install --no-build-isolation transformer_engine[pytorch]==2.5
+uv pip install --no-build-isolation transformer_engine[pytorch]==2.10
 # 或使用以下方式安装
 pip install --no-build-isolation git+https://github.com/NVIDIA/TransformerEngine.git@release_v2.5#egg=transformer_engine[pytorch]
 
@@ -32,5 +39,6 @@ export MEGATRON_LM_PATH='/xxx/Megatron-LM'
 
 # flash_attn
 # 选择合适的版本进行安装：https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3
-# 注意：请勿安装高于transformer_engine限制的最高版本：https://github.com/NVIDIA/TransformerEngine/blob/release_v2.6/transformer_engine/pytorch/attention/dot_product_attention/utils.py#L109
-MAX_JOBS=1 uv pip install "flash-attn==2.8.1" --no-build-isolation
+# 注意：请勿安装高于transformer_engine限制的最高版本：https://github.com/NVIDIA/TransformerEngine/blob/release_v2.10/transformer_engine/pytorch/attention/dot_product_attention/utils.py#L109
+MAX_JOBS=8 uv pip install "flash-attn==2.8.3" --no-build-isolation
+uv pip install "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.8cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
