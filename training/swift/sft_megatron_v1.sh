@@ -11,7 +11,7 @@ OUTPUT_NAME=swift311cu129-qwen3-0.6b-5080
 NPROC_PER_NODE=1 \
 CUDA_VISIBLE_DEVICES=0 \
 megatron sft \
-    --train_type lora \
+    --train_type full \
     --load data/models/Qwen/Qwen3-0.6B-mcore \
     --save runs/${OUTPUT_NAME} \
     --load_safetensors false \
@@ -21,7 +21,9 @@ megatron sft \
     --micro_batch_size 1 \
     --global_batch_size 16 \
     --no_gradient_accumulation_fusion false \
-    --recompute_granularity selective \
+    --recompute_granularity full \
+    --recompute_method uniform \
+    --recompute_num_layers 1 \
     --max_epochs 1 \
     --finetune true \
     --cross_entropy_loss_fusion true \
